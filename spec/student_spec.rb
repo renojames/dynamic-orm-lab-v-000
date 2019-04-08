@@ -93,10 +93,12 @@ describe Student do
     describe '#save' do
       it 'saves the student to the db' do
         new_student.save
-        expect(DB[:conn].execute("SELECT * FROM students WHERE name = 'Sam'")).to eq([{"id"=>1, "name"=>"Sam", "grade"=>1
-          #, 0=>1, 1=>"Sam", 2=>11}
-          ])
+        expect(DB[:conn].execute("SELECT * FROM students WHERE name = 'Sam'")).to eq([{"id"=>1, "name"=>"Sam", "grade"=>11
+          #, 0=>1, 1=>"Sam", 2=>11
+        }])
       end
+
+      #NOTES: Altered the above method spec per technical coach Ally Kadel to account for a gem versioning discrepency
 
       it 'sets the student\'s id' do
         new_student.save
