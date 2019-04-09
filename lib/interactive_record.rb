@@ -1,5 +1,6 @@
 require_relative "../config/environment.rb"
 require 'active_support/inflector'
+require 'pry'
 
 class InteractiveRecord
 
@@ -49,6 +50,15 @@ class InteractiveRecord
   def self.find_by_name(name)
     sql = "SELECT * FROM #{self.table_name} WHERE name = ?"
     DB[:conn].execute(sql, name)
+  end
+
+  def self.find_by(hash)
+
+    key = hash.keys.first.to_s
+    value = hash.values.first.to_s
+  binding.pry
+    sql = "SELECT * FROM #{self.table_name} WHERE #{key} = #{value}"
+    DB[:conn].execute(sql)
   end
 
 end
